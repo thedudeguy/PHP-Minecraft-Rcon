@@ -3,6 +3,8 @@ PHP-Minecraft-Rcon
 
 Simple Rcon class for php.
 
+Connection is established over TCP.
+
 ## Examples
 
 For this script to work, rcon must be enabled on the server, by setting `enable-rcon=true` in the server's `server.properties` file. A password must also be set, and provided in the script.

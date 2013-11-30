@@ -2,8 +2,7 @@
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
  * 
- * @author Chris Churchwell
- *
+ * @copyright 2013 Chris Churchwell
  */
 class Rcon {
 	

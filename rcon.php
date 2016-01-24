@@ -1,3 +1,4 @@
+<?php
 /**
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets

@@ -49,7 +49,7 @@ class Rcon {
 		}
 		
 		//set timeout
-		stream_set_timeout($this->socket, 3, 0);
+		stream_set_timeout($this->socket, $this->timeout, 0);
 		
 		//authorize
 		$auth = $this->authorize();

@@ -3,7 +3,7 @@
  * See https://developer.valvesoftware.com/wiki/Source_RCON_Protocol for
  * more information about Source RCON Packets
  *
- * PHP Version 5.6
+ * PHP Version 7
  *
  * @copyright 2013 Chris Churchwell
  * @author thedudeguy
@@ -36,7 +36,7 @@ class Rcon {
      * @param string $password
      * @param integer $timeout
      */
-    public function __construct($host, $port, $password, $timeout) {
+    public function __construct(string $host, $port, string $password, $timeout) {
         $this->host = $host;
         $this->port = $port;
         $this->password = $password;
@@ -101,7 +101,7 @@ class Rcon {
      *
      * @return boolean|mixed
      */
-    public function send_command($command) {
+    public function send_command(string $command) {
         if (!$this->is_connected())
             return false;
 

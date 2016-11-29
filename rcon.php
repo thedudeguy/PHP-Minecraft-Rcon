@@ -36,7 +36,7 @@ class Rcon {
 	 * @param string $password
 	 * @param integer $timeout
 	 */
-	public function __construct(string $host, $port, string $password, $timeout) {
+	public function __construct($host, $port, $password, $timeout) {
 		$this->host = $host;
 		$this->port = $port;
 		$this->password = $password;
@@ -101,7 +101,7 @@ class Rcon {
 	 *
 	 * @return boolean|mixed
 	 */
-	public function send_command(string $command) {
+	public function send_command($command) {
 		if (!$this->is_connected())
 			return false;
 

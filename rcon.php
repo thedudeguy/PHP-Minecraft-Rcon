@@ -112,7 +112,7 @@ class Rcon {
 			return false;
 
 		// send command packet
-		$this->write_packet(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);
+		$this->writePacket(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);
 
 		// get response
 		$response_packet = $this->readPacket();
@@ -134,7 +134,7 @@ class Rcon {
 	 */
 	private function authorize() 
 	{
-		$this->write_packet(Rcon::PACKET_AUTHORIZE, Rcon::SERVERDATA_AUTH, $this->password);
+		$this->writePacket(Rcon::PACKET_AUTHORIZE, Rcon::SERVERDATA_AUTH, $this->password);
 		$response_packet = $this->readPacket();
 
 		if ($response_packet['type'] == Rcon::SERVERDATA_AUTH_RESPONSE) {
@@ -158,7 +158,7 @@ class Rcon {
 	 *
 	 * @return void
 	 */
-	private function write_packet($packet_id, $packet_type, $packet_body)
+	private function writePacket($packet_id, $packet_type, $packet_body)
 	{
 		/*
 		Size			32-bit little-endian Signed Integer	 	Varies, see below.
@@ -205,5 +205,52 @@ class Rcon {
 		$packet_pack = unpack("V1id/V1type/a*body", $packet_data);
 
 		return $packet_pack;
+	}
+	
+	// Below are the deprecated functions for reverse compatibility
+	
+	/**
+	 * @deprecated
+	 * @see Rcon::getResponse()
+	 */
+	public function get_response()
+	{
+		return $this->getResponse();
+	}
+	
+	/**
+	 * @deprecated
+	 * @see Rcon::isConnected()
+	 */
+	public function is_connected()
+	{
+		return $this->isConnected();
+	}
+	
+	/**
+	 * @deprecated
+	 * @see Rcon::sendCommand()
+	 */
+	public function send_command($command) 
+	{
+		return $this->sendCommand($command) ;
+	}
+	
+	/**
+	 * @deprecated
+	 * @see Rcon::readPacket()
+	 */
+	private function read_packet() 
+	{
+		return $this->readPacket();	
+	}
+	
+	/**
+	 * @deprecated
+	 * @see Rcon::writePacket()
+	 */
+	private function write_packet($packet_id, $packet_type, $packet_body) 
+	{
+		return $this->writePacket($packet_id, $packet_type, $packet_body);
 	}
 }

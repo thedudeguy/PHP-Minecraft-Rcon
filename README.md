@@ -21,6 +21,6 @@ $rcon = new Rcon($host, $port, $password, $timeout);
 
 if ($rcon->connect())
 {
-  $rcon->send_command("say Hello World!");
+  $rcon->sendCommand("say Hello World!");
 }
 ```

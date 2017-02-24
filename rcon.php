@@ -108,7 +108,7 @@ class Rcon {
 	 */
 	public function sendCommand($command) 
 	{
-		if (!$this->is_connected())
+		if (!$this->isConnected())
 			return false;
 
 		// send command packet

@@ -236,22 +236,4 @@ class Rcon {
 	{
 		return $this->sendCommand($command) ;
 	}
-	
-	/**
-	 * @deprecated
-	 * @see Rcon::readPacket()
-	 */
-	private function read_packet() 
-	{
-		return $this->readPacket();	
-	}
-	
-	/**
-	 * @deprecated
-	 * @see Rcon::writePacket()
-	 */
-	private function write_packet($packet_id, $packet_type, $packet_body) 
-	{
-		return $this->writePacket($packet_id, $packet_type, $packet_body);
-	}
 }

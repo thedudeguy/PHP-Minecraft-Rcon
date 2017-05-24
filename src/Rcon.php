@@ -5,10 +5,11 @@
  *
  * PHP Version 7
  *
- * @copyright 2013 Chris Churchwell
+ * @copyright 2013-2017 Chris Churchwell
  * @author thedudeguy
  * @link https://github.com/thedudeguy/PHP-Minecraft-Rcon
  */
+ 
 class Rcon {
 	private $host;
 	private $port;

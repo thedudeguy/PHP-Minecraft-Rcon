@@ -1,0 +1,23 @@
+{
+	"name": "thedudeguy/rcon",
+	"description": "Simple Rcon class for php.",
+	"keywords": ["rcon", "minecraft"],
+	"homepage": "https://github.com/thedudeguy/PHP-Minecraft-Rcon",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Chris Churchwell",
+			"homepage": "http://chrischurchwell.com",
+			"email": "chris@chrischurchwell.com"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/thedudeguy/PHP-Minecraft-Rcon/issues",
+		"source": "https://github.com/thedudeguy/PHP-Minecraft-Rcon/tree/master"
+	},
+	"autoload": {
+		"psr-0": { 
+			"Rcon": "src/"
+		}
+    } 
+}

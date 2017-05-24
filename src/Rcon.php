@@ -234,6 +234,6 @@ class Rcon {
 	 */
 	public function send_command($command) 
 	{
-		return $this->sendCommand($command) ;
+		return $this->sendCommand($command);
 	}
 }

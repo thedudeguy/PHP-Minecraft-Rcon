@@ -16,8 +16,8 @@
 		"source": "https://github.com/thedudeguy/PHP-Minecraft-Rcon/tree/master"
 	},
 	"autoload": {
-		"psr-0": { 
-			"Rcon": "src/"
+		"psr-4": { 
+			"Thedudeguy\\": "src/"
 		}
     } 
 }

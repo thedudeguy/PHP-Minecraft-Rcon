@@ -9,7 +9,9 @@
  * @author thedudeguy
  * @link https://github.com/thedudeguy/PHP-Minecraft-Rcon
  */
- 
+
+namespace Thedudeguy;
+
 class Rcon {
 	private $host;
 	private $port;

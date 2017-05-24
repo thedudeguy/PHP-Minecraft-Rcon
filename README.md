@@ -24,6 +24,8 @@ $port = 25567;                      // Port rcon is listening on
 $password = 'server-rcon-password'; // rcon.password setting set in server.properties
 $timeout = 3;                       // How long to timeout.
 
+use Thedudeguy\Rcon;
+
 $rcon = new Rcon($host, $port, $password, $timeout);
 
 if ($rcon->connect())

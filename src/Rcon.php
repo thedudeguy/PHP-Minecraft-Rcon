@@ -21,8 +21,8 @@ class Rcon
 
     private $socket;
 
-    private $authorized;
-    private $lastResponse;
+    private $authorized = false;
+    private $lastResponse = "";
 
     const PACKET_AUTHORIZE = 5;
     const PACKET_COMMAND = 6;
@@ -76,11 +76,7 @@ class Rcon
         stream_set_timeout($this->socket, 3, 0);
 
         // check authorization
-        if ($this->authorize()) {
-                    return true;
-        }
-
-        return false;
+        return $this->authorize();
     }
 
     /**

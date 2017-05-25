@@ -12,7 +12,8 @@
 
 namespace Thedudeguy;
 
-class Rcon {
+class Rcon
+{
     private $host;
     private $port;
     private $password;
@@ -39,7 +40,7 @@ class Rcon {
      * @param string $password
      * @param integer $timeout
      */
-    public function __construct($host, $port, $password, $timeout) 
+    public function __construct($host, $port, $password, $timeout)
     {
         $this->host = $host;
         $this->port = $port;
@@ -52,7 +53,7 @@ class Rcon {
      *
      * @return string
      */
-    public function getResponse() 
+    public function getResponse()
     {
         return $this->last_response;
     }
@@ -62,7 +63,7 @@ class Rcon {
      *
      * @return boolean
      */
-    public function connect() 
+    public function connect()
     {
         $this->socket = fsockopen($this->host, $this->port, $errno, $errstr, $this->timeout);
 
@@ -75,8 +76,9 @@ class Rcon {
         stream_set_timeout($this->socket, 3, 0);
 
         // check authorization
-        if ($this->authorize())
-            return true;
+        if ($this->authorize()) {
+                    return true;
+        }
 
         return false;
     }
@@ -86,10 +88,11 @@ class Rcon {
      *
      * @return void
      */
-    public function disconnect() 
+    public function disconnect()
     {
-        if ($this->socket)
-            fclose($this->socket);
+        if ($this->socket) {
+                    fclose($this->socket);
+        }
     }
 
     /**
@@ -97,7 +100,7 @@ class Rcon {
      *
      * @return boolean
      */
-    public function isConnected() 
+    public function isConnected()
     {
         return $this->authorized;
     }
@@ -109,10 +112,11 @@ class Rcon {
      *
      * @return boolean|mixed
      */
-    public function sendCommand($command) 
+    public function sendCommand($command)
     {
-        if (!$this->isConnected())
-            return false;
+        if (!$this->isConnected()) {
+                    return false;
+        }
 
         // send command packet
         $this->writePacket(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);
@@ -135,7 +139,7 @@ class Rcon {
      *
      * @return boolean
      */
-    private function authorize() 
+    private function authorize()
     {
         $this->writePacket(Rcon::PACKET_AUTHORIZE, Rcon::SERVERDATA_AUTH, $this->password);
         $response_packet = $this->readPacket();
@@ -157,7 +161,7 @@ class Rcon {
      *
      * @param $packet_id
      * @param $packet_type
-     * @param $packet_body
+     * @param string $packet_body
      *
      * @return void
      */
@@ -173,14 +177,14 @@ class Rcon {
 
         //create packet
         $packet = pack("VV", $packet_id, $packet_type);
-        $packet = $packet . $packet_body . "\x00";
-        $packet = $packet . "\x00";
+        $packet = $packet.$packet_body."\x00";
+        $packet = $packet."\x00";
 
         // get packet size.
         $packet_size = strlen($packet);
 
         // attach size to packet.
-        $packet = pack("V", $packet_size) . $packet;
+        $packet = pack("V", $packet_size).$packet;
 
         // write packet.
         fwrite($this->socket, $packet, strlen($packet));
@@ -191,7 +195,7 @@ class Rcon {
      *
      * @return array
      */
-    private function readPacket() 
+    private function readPacket()
     {
         //get packet size.
         $size_data = fread($this->socket, 4);
@@ -234,7 +238,7 @@ class Rcon {
      * @deprecated
      * @see Rcon::sendCommand()
      */
-    public function send_command($command) 
+    public function send_command($command)
     {
         return $this->sendCommand($command);
     }

@@ -213,33 +213,4 @@ class Rcon
 
         return $packet_pack;
     }
-	
-    // Below are the deprecated functions for reverse compatibility
-	
-    /**
-     * @deprecated
-     * @see Rcon::getResponse()
-     */
-    public function get_response()
-    {
-        return $this->getResponse();
-    }
-	
-    /**
-     * @deprecated
-     * @see Rcon::isConnected()
-     */
-    public function is_connected()
-    {
-        return $this->isConnected();
-    }
-	
-    /**
-     * @deprecated
-     * @see Rcon::sendCommand()
-     */
-    public function send_command($command)
-    {
-        return $this->sendCommand($command);
-    }
 }

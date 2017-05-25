@@ -22,7 +22,7 @@ class Rcon
     private $socket;
 
     private $authorized = false;
-    private $lastResponse = "";
+    private $lastResponse = '';
 
     const PACKET_AUTHORIZE = 5;
     const PACKET_COMMAND = 6;

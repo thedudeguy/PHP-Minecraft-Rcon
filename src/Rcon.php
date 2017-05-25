@@ -41,7 +41,7 @@ class Rcon {
 	 */
 	public function __construct($host, $port, $password, $timeout) 
 	{
-	    $this->host = $host;
+		$this->host = $host;
 		$this->port = $port;
 		$this->password = $password;
 		$this->timeout = $timeout;
@@ -75,8 +75,9 @@ class Rcon {
 		stream_set_timeout($this->socket, 3, 0);
 
 		// check authorization
-		if ($this->authorize())
-			return true;
+		if ($this->authorize()) {
+					return true;
+		}
 
 		return false;
 	}
@@ -88,8 +89,9 @@ class Rcon {
 	 */
 	public function disconnect() 
 	{
-		if ($this->socket)
-			fclose($this->socket);
+		if ($this->socket) {
+					fclose($this->socket);
+		}
 	}
 
 	/**
@@ -111,8 +113,9 @@ class Rcon {
 	 */
 	public function sendCommand($command) 
 	{
-		if (!$this->isConnected())
-			return false;
+		if (!$this->isConnected()) {
+					return false;
+		}
 
 		// send command packet
 		$this->writePacket(Rcon::PACKET_COMMAND, Rcon::SERVERDATA_EXECCOMMAND, $command);

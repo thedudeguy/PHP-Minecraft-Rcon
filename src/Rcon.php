@@ -26,6 +26,7 @@ class Rcon
 
     const PACKET_AUTHORIZE = 5;
     const PACKET_COMMAND = 6;
+    const PACKET_COMMAND_ENDING = 7;
 
     const SERVERDATA_AUTH = 3;
     const SERVERDATA_AUTH_RESPONSE = 2;
@@ -117,14 +118,20 @@ class Rcon
         // send command packet
         $this->writePacket(self::PACKET_COMMAND, self::SERVERDATA_EXECCOMMAND, $command);
 
-        // get response
-        $response_packet = $this->readPacket();
-        if ($response_packet['id'] == self::PACKET_COMMAND) {
-            if ($response_packet['type'] == self::SERVERDATA_RESPONSE_VALUE) {
-                $this->lastResponse = $response_packet['body'];
+        // send additional packet to determine last response packet later
+        $this->writePacket(self::PACKET_COMMAND_ENDING, self::SERVERDATA_EXECCOMMAND, 'ping');
 
-                return $response_packet['body'];
-            }
+        // get response
+        $response = '';
+        $response_packet = $this->readPacket();
+        while ($response_packet['id'] == self::PACKET_COMMAND && $response_packet['type'] == self::SERVERDATA_RESPONSE_VALUE) {
+            $response .= $response_packet['body'];
+            $response_packet = $this->readPacket();
+        }
+        $response = substr($response, 0, -3);
+        if ($response != '') {
+            $this->lastResponse = $response_packet['body'];
+            return $response;
         }
 
         return false;
